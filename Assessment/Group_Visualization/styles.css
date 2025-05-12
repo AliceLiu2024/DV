@@ -1,0 +1,522 @@
+/* Reset & 基础 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* 地图容器（按需） */
+.map-container {
+  width: 90%;
+  height: 90%;
+  position: relative;
+}
+
+/* ------------------------------------------- cover-------------------------------------------------- */
+/* 封面：固定全屏 */
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: url("pic/pexels-donaldtong94-87737.jpg") center/cover no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/* 封面一级标题 */
+.cover h1 {
+  font-family: "Georgia", serif; /* 你想要的字体 */
+  font-size: 3rem; /* 也可以用 px、vw 等单位 */
+  line-height: 1; /* 行高 */
+  text-align: center; /* 居中对齐 */
+  margin: 0.2em 0; /* 上下间距 */
+  color: #fff; /* 文字颜色 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* 给点阴影更立体 */
+}
+
+/* 封面副标题或段落 */
+.cover p {
+  font-family: "Arial", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0.5em 0;
+  color: #eee;
+}
+
+/* 通用章节样式 */
+.section {
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-top: 60px; /* 留出导航高度 */
+  scroll-snap-align: start;
+}
+
+/* ------------------------------------------- arrow -------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth; /* 平滑滚动 */
+}
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5rem;
+  color: white;
+  text-decoration: none;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+/* 箭头跳动动画 */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+/* ------------------------------------------- navbar -------------------------------------------------- */
+/* 导航栏 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  /* 背景色 + 图片叠加 */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  font-family: "Georgia", serif;
+  display: flex;
+  gap: 40px;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 11; /* 高于封面 */
+}
+.navbar.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+.section-title {
+  font-size: 20px;
+  margin-right: auto; /* ✅ 把其他链接“推”到右边 */
+}
+/* -------------------------------------------intro-------------------------------------------------- */
+/* 整体居中，用 flex 布局也能更灵活 */
+#section-intro {
+  height: 120vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: url("pic/intro.jpg") center/cover no-repeat;
+  background-size: cover;
+}
+
+/* 文本框样式 */
+#section-intro .intro-box {
+  background: rgba(255, 255, 255, 0.7); /* 半透明白 */
+  padding: 2rem; /* 内边距 */
+  border-radius: 1rem; /* 圆角 */
+  max-width: 900px; /* 宽度上限 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 正文 */
+.intro-top-text,
+.intro-bottom-text {
+  font-family: "Georgia", serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+/* pic */
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap; /* 小屏幕自动换行 */
+}
+
+.image-item {
+  max-width: 45%;
+  text-align: center;
+}
+
+.image-item img {
+  width: 350px; /* 设置具体宽度 */
+  height: 250px; /* 设置具体高度（可选） */
+  object-fit: cover; /* 裁剪多余部分以填满容器 */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #444;
+  font-style: italic;
+}
+
+/* -------------------------------------------map 1-------------------------------------------------- */
+
+#section-globe {
+  background: rgb(0, 0, 0);
+  background-size: cover;
+  position: relative;
+}
+
+#section-globe #map_1 {
+  position: absolute;
+  top: 0%;
+  right: 20%;
+  width: 80%;
+  height: 100%;
+}
+
+.mapboxgl-popup-anchor-top {
+  max-width: none !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: white;
+}
+.mapboxgl-popup-anchor-bottom {
+  max-width: none !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: white;
+}
+.mapboxgl-popup-anchor-top .mapboxgl-popup-content {
+  background-color: rgba(255 255 255 / 74%) !important;
+  color: white;
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-content {
+  background-color: rgba(255 255 255 / 74%) !important;
+  color: white;
+}
+
+/* 文本框样式 */
+#section-globe .map1-box {
+  position: absolute;
+  top: 20%;
+  right: 3%;
+  width: 20%;
+  height: 60%;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.5); /* 半透明白 */
+  backdrop-filter: blur(4px);
+  padding: 15px; /* 内边距 */
+  border-radius: 12px; /* 圆角 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* 正文 */
+#section-globe .map1-box p {
+  font-family: "Georgia", sans-serif;
+  overflow-wrap: anywhere;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* -------------------------------------------map 2-------------------------------------------------- */
+#section-map {
+  position: relative;
+  background: #ffffff;
+  background-size: cover;
+}
+
+/* 地图占满这个 section */
+#section-map #map_2 {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+}
+
+/* -------------------------词云本身------------------------- */
+#wordcloud {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.wordcloud-word:hover {
+  text-decoration: underline;
+  color: #007acc;
+}
+/* -------------------------词云的弹窗------------------------- */
+/* show 类触发动画并显示 */
+.info-panel.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.info-panel.hide {
+  animation: fadeOutUp 0.4s ease-out forwards;
+}
+
+/* 键盘弹窗基础样式 */
+.info-panel {
+  opacity: 0;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 5%;
+  width: 900px;
+  height: 150px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(200, 200, 200, 0.6);
+  color: #333;
+  z-index: 1000;
+  animation: fadeInDown 0.4s ease-out both;
+  overflow-y: auto;
+  font-family: "Georgia", serif;
+}
+
+/* 标题 */
+.info-panel h3 {
+  margin-top: 5;
+  font-size: 1rem;
+  color: #222;
+}
+
+/* 文本 */
+.info-panel p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+/* -------------------------侧边栏和打开关闭侧边栏的按钮------------------------- */
+/* 侧边栏固定在地图左侧 */
+#section-map #MainSidebar {
+  position: absolute;
+  top: 3%;
+  left: 0%;
+  width: 20%;
+  height: 90%;
+  z-index: 10;
+
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(200, 200, 200, 0.6);
+  color: #333;
+  display: flex; /* 启用flex布局 */
+  flex-direction: column; /* 垂直排列 */
+  transition: transform 0.5s ease;
+  font-family: "Georgia", serif;
+}
+.sidebar-text {
+  font-size: 10px;
+  line-height: 1.5;
+}
+#section-map #MainSidebar h2 {
+  font-size: 14px;
+  /* 如有需要，也可以加上行高、颜色等 */
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+/* 收起后：往左平移自身宽度，并稍微变透明 */
+#section-map #MainSidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+/* 切换按钮 */
+.sidebar-toggle {
+  position: absolute;
+  right: -110px;
+  width: 80px;
+  height: 30px;
+  background: #364955;
+  border: none;
+  color: white;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: background 0.3s ease;
+  z-index: 12;
+  transform: rotate(90deg);
+  transform-origin: left top;
+}
+
+/* 被选中的按钮样式 */
+.sidebar-toggle.active {
+  background: #2391c5; /* 比原色浅一点 */
+}
+/* 用 top 区分两个按钮 */
+#btnPage1 {
+  top: 40px;
+}
+#btnPage2 {
+  top: 125px;
+}
+
+/* -------------------------切换线路按钮------------------------- */
+#lineSelection {
+  margin-top: auto; /* 将按钮组推到底部 */
+  padding-top: 10px; /* 与上方内容保持间距 */
+  border-top: 1px solid #eee; /* 可选：添加分割线 */
+}
+
+.line-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between; /* 按钮平均分布 */
+}
+
+.line-button {
+  flex: 1; /* 按钮平均分配宽度 */
+  padding: 5px 5px; /* 增加垂直内边距 */
+  font-size: 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center; /* 文字居中 */
+  transition: all 0.3s; /* 添加过渡效果 */
+}
+
+.line-button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px); /* 悬停时轻微上浮 */
+}
+
+.line-button.active {
+  background-color: #2391c5;
+  color: white;
+  border-color: #005f99;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.line-button:not(.active) {
+  opacity: 0.6;
+}
+
+/* -------------------------chart------------------------- */
+.chart-section {
+  height: 160px; /* 扁高 */
+}
+.chart-section canvas {
+  width: 100%;
+  height: 100%; /* 填满容器 */
+}
+
+/* -------------------------------------------references-------------------------------------------------- */
+#section-ref {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: url("pic/references.jpg") center/cover no-repeat;
+  background-size: cover;
+  padding: 2rem;
+}
+
+#section-ref .ref-box {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 80vw;
+  max-height: 40vh;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* 自动出现垂直滚动条 */
+  text-align: left;
+}
+
+/* 标题 */
+.ref-box h2 {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  color: #222;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* 正文 */
+.ref-text {
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+/* -------------------------------------------footer-------------------------------------------------- */
+/* Footer 样式 */
+.site-footer {
+  background: #222;
+  color: #eee;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+
+.site-footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.site-footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.site-footer .footer-section {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.site-footer h3 {
+  margin-top: 0;
+}
+
+.site-footer p {
+  margin: 0.3em 0;
+}
+
+.site-footer .copyright {
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
